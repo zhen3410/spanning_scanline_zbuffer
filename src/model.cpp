@@ -28,7 +28,7 @@ void OBJ::Load_OBJ(const char* filename) {
 		string info;
 		
 		record >> info;
-		//µ¼Èë¶¥µãĞÅÏ¢
+		//å¯¼å…¥é¡¶ç‚¹ä¿¡æ¯
 		if (info[0] == 'v') {
 			if (size(info) == 1) {
 				point temp;
@@ -49,7 +49,7 @@ void OBJ::Load_OBJ(const char* filename) {
 			}
 		}
 		else if (info[0] == 'f') {
-			//µ¼ÈëÃæÆ¬ĞÅÏ¢
+			//å¯¼å…¥é¢ç‰‡ä¿¡æ¯
 			model.faceNum++;
 
 			Face tempFace;
@@ -69,7 +69,7 @@ void OBJ::Load_OBJ(const char* filename) {
 		}
 	}
 
-	//¶Ô¹ıĞ¡µÄÄ£ĞÍÉèÖÃ·Å´ó±¶Êı£¬Ê¹Ä£ĞÍÕı³£ÏÔÊ¾
+	//å¯¹è¿‡å°çš„æ¨¡å‹è®¾ç½®æ”¾å¤§å€æ•°ï¼Œä½¿æ¨¡å‹æ­£å¸¸æ˜¾ç¤º
 	double spanx = maxx - minx;
 	model.scale = 1;
 	if (spanx < 1)model.scale = 400;
@@ -79,18 +79,18 @@ void OBJ::Load_OBJ(const char* filename) {
 	else if (spanx < 40)model.scale = 10;
 }
 
-//³õÊ¼»¯ÃæÆ¬Á´±í
+//åˆå§‹åŒ–é¢ç‰‡é“¾è¡¨
 void OBJ::init_face_list() {
 	model.face = (Face*)malloc(sizeof(Face));
 	if (model.face == NULL)
 	{
-		printf("ÉêÇë¿Õ¼äÊ§°Ü£¡");
+		printf("ç”³è¯·ç©ºé—´å¤±è´¥ï¼");
 		exit(0);
 	}
 	model.face->next = NULL;
 }
 
-//²åÈëÃæÆ¬
+//æ’å…¥é¢ç‰‡
 void OBJ::insert_face(Face* face) {
 	Face* temp = model.face;
 	Face* f = new Face;
@@ -100,8 +100,8 @@ void OBJ::insert_face(Face* face) {
 }
 
 
-//³õÊ¼»¯·ÖÀà±ß±í¡¢·ÖÀà¶à±ßĞÎ±íÒÔ¼°»î»¯±ß±íºÍ»î»¯¶à±ßĞÎ±í
-//²¢ÇÒÇå³ıÉÏ´ÎÏÔÊ¾´æÁôµÄÁ´±í
+//åˆå§‹åŒ–åˆ†ç±»è¾¹è¡¨ã€åˆ†ç±»å¤šè¾¹å½¢è¡¨ä»¥åŠæ´»åŒ–è¾¹è¡¨å’Œæ´»åŒ–å¤šè¾¹å½¢è¡¨
+//å¹¶ä¸”æ¸…é™¤ä¸Šæ¬¡æ˜¾ç¤ºå­˜ç•™çš„é“¾è¡¨
 void zbuffer::init() {
 	for (int i = 0; i < 1000; i++) {
 		while (dis_edge[i] != NULL) {
@@ -134,7 +134,7 @@ void zbuffer::init() {
 	for (int i = 0; i < 1000; i++) {
 		dis_edge[i] = (sort_edge_table*)malloc(sizeof(sort_edge_table));
 		if (dis_edge[i] == NULL) {
-			cout << "ÉêÇë¿Õ¼äÊ§°Ü" << endl;
+			cout << "ç”³è¯·ç©ºé—´å¤±è´¥" << endl;
 			exit(0);
 		}
 		dis_edge[i]->next = NULL;
@@ -143,7 +143,7 @@ void zbuffer::init() {
 	for (int i = 0; i < 1000; i++) {
 		dis_pol[i] = (sort_pol_table*)malloc(sizeof(sort_pol_table));
 		if (dis_pol[i] == NULL) {
-			cout << "ÉêÇë¿Õ¼äÊ§°Ü" << endl;
+			cout << "ç”³è¯·ç©ºé—´å¤±è´¥" << endl;
 			exit(0);
 		}
 		dis_pol[i]->next = NULL;
@@ -151,21 +151,21 @@ void zbuffer::init() {
 
 	act_edge = (act_edge_table*)malloc(sizeof(act_edge_table));
 	if (act_edge == NULL) {
-		cout << "ÉêÇë¿Õ¼äÊ§°Ü" << endl;
+		cout << "ç”³è¯·ç©ºé—´å¤±è´¥" << endl;
 		exit(0);
 	}
 	act_edge->next = NULL;
 
 	act_pol = (act_pol_table*)malloc(sizeof(act_pol_table));
 	if (act_pol == NULL) {
-		cout << "ÉêÇë¿Õ¼äÊ§°Ü" << endl;
+		cout << "ç”³è¯·ç©ºé—´å¤±è´¥" << endl;
 		exit(0);
 	}
 	act_pol->next = NULL;
 }
 
 
-//½«Ô­Ê¼¶¥µãÔ²ÕûÎª×î½üµÄÕûÊı×ø±êµã
+//å°†åŸå§‹é¡¶ç‚¹åœ†æ•´ä¸ºæœ€è¿‘çš„æ•´æ•°åæ ‡ç‚¹
 vertex zbuffer::roundVer(point x,int scale) {
 	vertex v;
 	
@@ -183,7 +183,7 @@ vertex zbuffer::roundVer(point x,int scale) {
 	return v;
 }
 
-//ÈÆyÖáĞı×ª
+//ç»•yè½´æ—‹è½¬
 void OBJ::rotatey(int theta) {
 
 	double x = 3.14*theta / 180;
@@ -203,7 +203,7 @@ void OBJ::rotatey(int theta) {
 	}
 }
 
-//ÈÆxÖáĞı×ª
+//ç»•xè½´æ—‹è½¬
 void OBJ::rotatex(int theta) {
 
 	double x = 3.14*theta / 180;
@@ -223,7 +223,7 @@ void OBJ::rotatex(int theta) {
 	}
 }
 
-//·Å´ó
+//æ”¾å¤§
 void OBJ::m_plus(int scale) {
 
 	double s = 1.0 + (double)scale / 100;
@@ -240,7 +240,7 @@ void OBJ::m_plus(int scale) {
 	}
 }
 
-//ËõĞ¡
+//ç¼©å°
 void OBJ::m_minu( int scale) {
 
 	double s = 1.0 + (double)scale / 100;
@@ -257,7 +257,7 @@ void OBJ::m_minu( int scale) {
 	}
 }
 
-//ÏòÏÂÆ½ÒÆ
+//å‘ä¸‹å¹³ç§»
 void OBJ::to_down(int step) {
 
 	Face* f = model.face->next;
@@ -270,7 +270,7 @@ void OBJ::to_down(int step) {
 	}
 }
 
-//ÏòÉÏÆ½ÒÆ
+//å‘ä¸Šå¹³ç§»
 void OBJ::to_up(int step) {
 
 	Face* f = model.face->next;
@@ -283,7 +283,7 @@ void OBJ::to_up(int step) {
 	}
 }
 
-//Ïò×óÆ½ÒÆ
+//å‘å·¦å¹³ç§»
 void OBJ::to_left(int step) {
 
 	Face* f = model.face->next;
@@ -296,7 +296,7 @@ void OBJ::to_left(int step) {
 	}
 }
 
-//ÏòÓÒÆ½ÒÆ
+//å‘å³å¹³ç§»
 void OBJ::to_right(int step) {
 
 	Face* f = model.face->next;
@@ -309,7 +309,7 @@ void OBJ::to_right(int step) {
 	}
 }
 
-//¿ØÖÆÄ£ĞÍÔË¶¯
+//æ§åˆ¶æ¨¡å‹è¿åŠ¨
 void OBJ::trans(unsigned char key,int scale) {
 
 	switch (key) {
@@ -354,7 +354,7 @@ bool cmp_p(vertex a, vertex b) {
 	return a.y > b.y;
 }
 
-//½¨Á¢·ÖÀà±ß±íºÍ·ÖÀà¶à±ßĞÎ±í
+//å»ºç«‹åˆ†ç±»è¾¹è¡¨å’Œåˆ†ç±»å¤šè¾¹å½¢è¡¨
 void zbuffer::creatDS(Model model) {
 	
 	init();
@@ -513,7 +513,7 @@ void zbuffer::insert_pol(int ind, sort_pol_table* p) {
 	temp->next = p;
 }
 
-//Ö´ĞĞzbufferËã·¨
+//æ‰§è¡Œzbufferç®—æ³•
 void zbuffer::exc_zbuffer(int scan_line) {
 	memset(x_resolution, 0, sizeof(GLubyte) * 3 * 1080);
 	addAct(scan_line);
@@ -596,7 +596,7 @@ void zbuffer::exc_zbuffer(int scan_line) {
 	sort_act_edge();
 }
 
-//¸üĞÂ»î»¯±ß±íºÍ»î»¯¶à±ßĞÎ±í
+//æ›´æ–°æ´»åŒ–è¾¹è¡¨å’Œæ´»åŒ–å¤šè¾¹å½¢è¡¨
 void zbuffer::update_act() {
 	act_pol_table* p = act_pol;
 	act_pol_table* q = p -> next;
@@ -631,7 +631,7 @@ void zbuffer::update_act() {
 }
 
 
-//²åÈë»î»¯±ß
+//æ’å…¥æ´»åŒ–è¾¹
 void zbuffer::insert_act_edge(act_edge_table* e) {
 	act_edge_table* p;
 	act_edge_table* q = act_edge;
@@ -649,7 +649,7 @@ void zbuffer::insert_act_edge(act_edge_table* e) {
 	q->next = e;
 }
 
-//²åÈë»î»¯¶à±ßĞÎ
+//æ’å…¥æ´»åŒ–å¤šè¾¹å½¢
 void zbuffer::insert_act_pol(act_pol_table* p) {
 	act_pol_table* temp = act_pol;
 	//act_pol_table* pol = p;
@@ -658,7 +658,7 @@ void zbuffer::insert_act_pol(act_pol_table* p) {
 	temp->next = p;
 }
 
-//¶Ô»î»¯±ß±í½øĞĞ·ÖÀà
+//å¯¹æ´»åŒ–è¾¹è¡¨è¿›è¡Œåˆ†ç±»
 void zbuffer::sort_act_edge() {
 	act_edge_table* q;
 	act_edge_table* p = act_edge->next;
