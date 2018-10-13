@@ -1,4 +1,5 @@
 # spanning_scanline_zbuffer
+# 区间扫描线z-buffer算法
 
 ## 使用说明
 ### 使用键盘控制：
